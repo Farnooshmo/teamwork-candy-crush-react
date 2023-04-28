@@ -1,24 +1,30 @@
 import {useEffect, useState} from "react" 
-const width = 8 ;
+import createBoard from "./components/createBoard";
+import checkForColumnOfFour from "./components/checkForColumnOfFour";
+import checkForColumnOfThree from "./components/checkForColumnOfThree";
+import checkForRowOfFour from "./components/checkForRowOfFour";
+import checkForRowOfThree from "./components/checkForRowOfThree";
 
 const  App = () => {
-  const candyColors = ["orange","blue","yellow","green","purple","red"]
+  
+  const width = 8 ;
+
   const [currentColorArrangement , setCurrentColorArrangement] = useState([])
 
-  const createBoard = () => {
-   const randomColorArrangement = [] 
-   for (let i= 0; i< width * width ;i++) {
-    const randomColor = candyColors[Math.floor(Math.random()* candyColors.length)]
-    randomColorArrangement.push(randomColor)
-      
-    }
-    setCurrentColorArrangement(randomColorArrangement)
-
-  }
   useEffect (() => {
-    createBoard()
-
+    createBoard(width, setCurrentColorArrangement)
   },[])
+
+  useEffect (() => {
+    const timer = setInterval(() => {
+      checkForColumnOfFour(width,currentColorArrangement)
+      checkForRowOfFour(width, currentColorArrangement)
+      checkForColumnOfThree(width, currentColorArrangement)
+      checkForRowOfThree(width, currentColorArrangement)
+      setCurrentColorArrangement([...currentColorArrangement])
+    }, 100);
+    return () => clearInterval (timer) 
+  },[currentColorArrangement])
 
   
   return <div className="app">
