@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Candy-Crush Game (by CYF London9 Trainees)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 
-## Available Scripts
+[![All Contributors](https://img.shields.io/badge/all_contributors-5-orange.svg?style=flat-square)](#contributors-)
 
-In the project directory, you can run:
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
-### `npm start`
+This is a creative representation of the well-known Candy-Crush Game implemented using React.js.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Deployed Website
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can access the application at the following address: <a href="https://teamwork-candycrush.netlify.app/">Click me</a>
 
-### `npm test`
+## Game Rules
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- The game is played by swiping candies to create sets of 3 or 4 matching candies.
+- You can only move a candy to an adjacent spot in one direction, either up, down,left or right if it creates a match of at least three candies.
+- When matched, the candies will crush and shift the candies above them.
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- [x] The application provides the <b>score</b> for player.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- [x] JavaScript Frameworks: React
+- [x] CSS, HTML
 
-### `npm run eject`
+## Installation
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+**Clone the repository:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```bash
+git clone https://github.com/Farnooshmo/teamwork-candy-crush-react.git
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Install dependencies:**
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```bash
+npm install
+```
 
-## Learn More
+**Start the development server:**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```bash
+npm start
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contributors
 
-### Code Splitting
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+     <td align="center" valign="top" width="14.28%"><a href="https://github.com/Farnooshmo"><img src="https://avatars.githubusercontent.com/u/91014204?v=4" width="100px;" alt="Farnoosh"/><br /><sub><b>Farnoosh</b></sub></a><br /><a href="https://github.com/Farnooshmo/teamwork-candy-crush-react/commits?author=Farnooshmo" title="Code">📆</a></td>
+       <td align="center" valign="top" width="14.28%"><a href="https://github.com/BoshraM"><img src="https://avatars.githubusercontent.com/u/113248018?v=4" width="100px;" alt="Boshra"/><br /><sub><b>Boshra</b></sub></a><br /><a href="https://github.com/Farnooshmo/teamwork-candy-crush-react/commits?author=BoshraM" title="Code">💻</a> </td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/farzaneh-haghani"><img src="https://avatars.githubusercontent.com/u/68525882?v=4" width="100px;" alt="Farzaneh"/><br /><sub><b>Farzaneh</b></sub></a><br /><a href="https://github.com/Farnooshmo/teamwork-candy-crush-react/commits?author=farzaneh-haghani" title="Code">💻</a></td>
+       </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/HeniMKH"><img src="https://avatars.githubusercontent.com/u/108895187?v=4" width="100px;" alt="Hengameh"/><br /><sub><b>Hengameh</b></sub></a><br /><a href="https://github.com/Farnooshmo/teamwork-candy-crush-react/commits?author=HeniMKH" title="Code">💻</a></td>
+        <td align="center" valign="top" width="14.28%"><a href="https://github.com/hadipournigjeh"><img src="https://avatars.githubusercontent.com/u/108987953?v=4" width="100px;" alt="Hadi"/><br /><sub><b>Hadi</b></sub></a><br /><a href="https://github.com/Farnooshmo/teamwork-candy-crush-react/commits?author=hadipournigjeh" title="Code">💻</a></td>
+        </tr>
+  </tbody>
+</table>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
-### Analyzing the Bundle Size
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- markdownlint-disable -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- ALL-CONTRIBUTORS-LIST:END -->
