@@ -47,10 +47,60 @@ const App = () => {
       squareBeingDraggedId - width,
       squareBeingDraggedId + width,
     ];
-
     const validMove = validMoves.includes(squareBeingReplacedId);
 
-    if (validMove) {
+    const validImages = () => {
+      const imageDragged = squareBeingDragged.getAttribute("src");
+      const difference = squareBeingDraggedId - squareBeingReplacedId;
+      let direction = ""
+      if (difference === 1) {
+        direction = "left";
+      }
+      if (difference === -1) {
+        direction = "right";
+      }
+      if (difference === width) {
+        direction = "up";
+      }
+      if (difference === -width) {
+        direction = "down";
+      }
+
+      const rightImageReplaced = currentColorArrangement[squareBeingReplacedId + 1]
+      const secondRightImageReplaced = currentColorArrangement[squareBeingReplacedId + 2]
+      const leftImageReplaced = currentColorArrangement[squareBeingReplacedId - 1]
+      const secondLeftImageReplaced = currentColorArrangement[squareBeingReplacedId - 2]
+      const upImageReplaced = currentColorArrangement[squareBeingReplacedId - width]
+      const secondUpImageReplaced = currentColorArrangement[squareBeingReplacedId - width * 2]
+      const downImageReplaced = currentColorArrangement[squareBeingReplacedId + width]
+      const secondDownImageReplaced = currentColorArrangement[squareBeingReplacedId + width * 2]
+
+      if (direction !== "left" && imageDragged === rightImageReplaced && imageDragged === secondRightImageReplaced) {
+        return true;
+      }
+      if (direction !== "right" && direction !== "left" && imageDragged === rightImageReplaced && imageDragged === leftImageReplaced) {
+        return true;
+      }
+      if (direction !== "right" && imageDragged === leftImageReplaced && imageDragged === secondLeftImageReplaced) {
+        return true;
+      }
+      if (direction !== "down" && imageDragged === upImageReplaced && imageDragged === secondUpImageReplaced) {
+        return true;
+      }
+      if (direction !== "down" && direction !== "up" && imageDragged === upImageReplaced && imageDragged === downImageReplaced) {
+        return true;
+      }
+      if (direction !== "up" && imageDragged === downImageReplaced && imageDragged === secondDownImageReplaced) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+
+
+
+    if (validMove && validImages()) {
       currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute("src");
       currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute("src");
       setCurrentColorArrangement([...currentColorArrangement]);
