@@ -2,8 +2,8 @@ import React from "react";
 
 const ScoreBoards = ({ score }) => {
   return (
-    <div>
-      <h2>{score}</h2>
+    <div className="score">
+      <h2>You Score : {score}</h2>
     </div>
   );
 };
