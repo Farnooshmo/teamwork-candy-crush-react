@@ -5,24 +5,19 @@ import checkForColumnOfThree from "./components/checkForColumnOfThree";
 import checkForRowOfFour from "./components/checkForRowOfFour";
 import checkForRowOfThree from "./components/checkForRowOfThree";
 import moveIntoSquareBelow from "./components/moveIntoSquareBelow";
-import blueCandy from "./images/blue-candy.png";
-import greenCandy from "./images/green-candy.png";
-import orangeCandy from "./images/orange-candy.png";
-import purpleCandy from "./images/purple-candy.png";
-import redCandy from "./images/red-candy.png";
-import yellowCandy from "./images/yellow-candy.png";
 import ScoreBoards from "./components/ScoreBoards";
 
 const App = () => {
   const width = 8;
   const candyColors = [
-    blueCandy,
-    greenCandy,
-    orangeCandy,
-    purpleCandy,
-    redCandy,
-    yellowCandy,
+    "images/blue-candy.png",
+    "images/green-candy.png",
+    "images/orange-candy.png",
+    "images/purple-candy.png",
+    "images/red-candy.png",
+    "images/yellow-candy.png",
   ];
+
   const [currentColorArrangement, setCurrentColorArrangement] = useState([]);
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
@@ -36,15 +31,15 @@ const App = () => {
     setSquareBeingReplaced(e.target);
   };
 
-
   const dragEnd = () => {
 
-    const squareBeingDraggedId = parseInt(
-      squareBeingDragged.getAttribute("data-id")
-    );
-    const squareBeingReplacedId = parseInt(
-      squareBeingReplaced.getAttribute("data-id")
-    );
+    if (!squareBeingReplaced) {
+      setSquareBeingDragged(null);
+      return;
+    }
+
+    const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute("data-id"));
+    const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute("data-id"));
 
     const validMoves = [
       squareBeingDraggedId - 1,
@@ -52,37 +47,23 @@ const App = () => {
       squareBeingDraggedId - width,
       squareBeingDraggedId + width,
     ];
+
     const validMove = validMoves.includes(squareBeingReplacedId);
 
     if (validMove) {
-      currentColorArrangement[squareBeingReplacedId] =
-        squareBeingDragged.getAttribute("src");
-      currentColorArrangement[squareBeingDraggedId] =
-        squareBeingReplaced.getAttribute("src");
-    }
-    const isAColumnOfFour = checkForColumnOfFour(width, currentColorArrangement, setScoreDisplay);
-    const isARowOfFour = checkForRowOfFour(width, currentColorArrangement, setScoreDisplay);
-    const isAColumnOfThree = checkForColumnOfThree(width, currentColorArrangement, setScoreDisplay);
-    const isARowOfThree = checkForRowOfThree(width, currentColorArrangement, setScoreDisplay);
-
-    if (
-      squareBeingReplacedId &&
-      validMove
-      && (isAColumnOfFour || isAColumnOfThree || isARowOfFour || isARowOfThree)
-    ) {
-      setSquareBeingDragged(null);
-      setSquareBeingReplaced(null);
-    } else {
       currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute("src");
       currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute("src");
       setCurrentColorArrangement([...currentColorArrangement]);
+      setSquareBeingDragged(null);
+      setSquareBeingReplaced(null);
     }
-
   };
+
 
   useEffect(() => {
     createBoard(width, setCurrentColorArrangement, candyColors);
   }, []);
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -95,6 +76,7 @@ const App = () => {
     }, 100);
     return () => clearInterval(timer);
   }, [currentColorArrangement]);
+
 
   return (
     <div className="app">
