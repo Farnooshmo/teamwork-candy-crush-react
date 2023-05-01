@@ -1,5 +1,5 @@
 import blank from "../images/blank-candy.png";
-const checkForRowOfFour = (width, currentColorArrangement) => {
+const checkForRowOfFour = (width, currentColorArrangement, setScoreDisplay) => {
   for (let i = 0; i <= 7; i++) {
     for (let j = 0; j <= 3; j++) {
       let firstIndex = j + width * i;
@@ -10,12 +10,13 @@ const checkForRowOfFour = (width, currentColorArrangement) => {
         firstIndex + 3,
       ];
       const decidedColor = currentColorArrangement[firstIndex];
-
+      const isBlank = currentColorArrangement[i] === blank;
       if (
         rowOfFour.every(
-          (square) => currentColorArrangement[square] === decidedColor
+          (square) => currentColorArrangement[square] === decidedColor && !isBlank
         )
       ) {
+        setScoreDisplay((score) => score + 4);
         rowOfFour.forEach(
           (square) => (currentColorArrangement[square] = blank)
         );
