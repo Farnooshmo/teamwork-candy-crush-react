@@ -1,15 +1,15 @@
-import blank from "../images/blank-candy.png";
 const checkForColumnOfThree = (width, currentColorArrangement, setScoreDisplay) => {
-  for (let i = 0; i <= 47; i++) {
+
+  const lastIndex = (width * width) - (width * 2);
+  for (let i = 0; i < lastIndex; i++) {
     const columnOfThree = [i, i + width, i + width * 2];
     const decidedColor = currentColorArrangement[i];
-    const isBlank = currentColorArrangement[i] === blank;
-    if (
-      columnOfThree.every((square) => currentColorArrangement[square] === decidedColor && !isBlank)) {
+    const isBlank = currentColorArrangement[i] === "images/blank-candy.png";
+    const isMatch = columnOfThree.every((square) => currentColorArrangement[square] === decidedColor);
+
+    if (isMatch && !isBlank) {
       setScoreDisplay((score) => score + 3);
-      columnOfThree.forEach(
-        (square) => (currentColorArrangement[square] = blank)
-      );
+      columnOfThree.forEach((square) => (currentColorArrangement[square] = "images/blank-candy.png"));
       return true;
     }
   }
