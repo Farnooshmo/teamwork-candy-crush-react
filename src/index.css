@@ -32,10 +32,46 @@
   background-color: aquamarine;
 }
 
+.modal-container {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 0;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.modal-text-head {
+  margin-left: 20px;
+  align-self: flex-start;
+}
+.modal-text {
+  padding: 0 1rem;
+}
+.modal-gif {
+  width: 50%;
+}
+.modal-button {
+  color: white;
+  background-color: blue;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+}
+
+.modal-button:hover {
+  background-color: darkblue;
+}
 /* ----------- media quary ----------- */
 
 @media only screen and (max-width: 400px) {
-
   .app {
     padding: 0;
     display: flex;
