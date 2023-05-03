@@ -23,6 +23,12 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
 
+  const [showModal, setShowModal] = useState(true);
+
+  const handleModal = () => {
+    setShowModal(false);
+  };
+
   const dragStart = (e) => {
     setSquareBeingDragged(e.target);
   };
@@ -32,14 +38,17 @@ const App = () => {
   };
 
   const dragEnd = () => {
-
     if (!squareBeingReplaced) {
       setSquareBeingDragged(null);
       return;
     }
 
-    const squareBeingDraggedId = parseInt(squareBeingDragged.getAttribute("data-id"));
-    const squareBeingReplacedId = parseInt(squareBeingReplaced.getAttribute("data-id"));
+    const squareBeingDraggedId = parseInt(
+      squareBeingDragged.getAttribute("data-id")
+    );
+    const squareBeingReplacedId = parseInt(
+      squareBeingReplaced.getAttribute("data-id")
+    );
 
     const validMoves = [
       squareBeingDraggedId - 1,
@@ -52,7 +61,7 @@ const App = () => {
     const validImages = () => {
       const imageDragged = squareBeingDragged.getAttribute("src");
       const difference = squareBeingDraggedId - squareBeingReplacedId;
-      let direction = ""
+      let direction = "";
       if (difference === 1) {
         direction = "left";
       }
@@ -66,54 +75,85 @@ const App = () => {
         direction = "down";
       }
 
-      const rightImageReplaced = currentColorArrangement[squareBeingReplacedId + 1]
-      const secondRightImageReplaced = currentColorArrangement[squareBeingReplacedId + 2]
-      const leftImageReplaced = currentColorArrangement[squareBeingReplacedId - 1]
-      const secondLeftImageReplaced = currentColorArrangement[squareBeingReplacedId - 2]
-      const upImageReplaced = currentColorArrangement[squareBeingReplacedId - width]
-      const secondUpImageReplaced = currentColorArrangement[squareBeingReplacedId - width * 2]
-      const downImageReplaced = currentColorArrangement[squareBeingReplacedId + width]
-      const secondDownImageReplaced = currentColorArrangement[squareBeingReplacedId + width * 2]
+      const rightImageReplaced =
+        currentColorArrangement[squareBeingReplacedId + 1];
+      const secondRightImageReplaced =
+        currentColorArrangement[squareBeingReplacedId + 2];
+      const leftImageReplaced =
+        currentColorArrangement[squareBeingReplacedId - 1];
+      const secondLeftImageReplaced =
+        currentColorArrangement[squareBeingReplacedId - 2];
+      const upImageReplaced =
+        currentColorArrangement[squareBeingReplacedId - width];
+      const secondUpImageReplaced =
+        currentColorArrangement[squareBeingReplacedId - width * 2];
+      const downImageReplaced =
+        currentColorArrangement[squareBeingReplacedId + width];
+      const secondDownImageReplaced =
+        currentColorArrangement[squareBeingReplacedId + width * 2];
 
-      if (direction !== "left" && imageDragged === rightImageReplaced && imageDragged === secondRightImageReplaced) {
+      if (
+        direction !== "left" &&
+        imageDragged === rightImageReplaced &&
+        imageDragged === secondRightImageReplaced
+      ) {
         return true;
       }
-      if (direction !== "right" && direction !== "left" && imageDragged === rightImageReplaced && imageDragged === leftImageReplaced) {
+      if (
+        direction !== "right" &&
+        direction !== "left" &&
+        imageDragged === rightImageReplaced &&
+        imageDragged === leftImageReplaced
+      ) {
         return true;
       }
-      if (direction !== "right" && imageDragged === leftImageReplaced && imageDragged === secondLeftImageReplaced) {
+      if (
+        direction !== "right" &&
+        imageDragged === leftImageReplaced &&
+        imageDragged === secondLeftImageReplaced
+      ) {
         return true;
       }
-      if (direction !== "down" && imageDragged === upImageReplaced && imageDragged === secondUpImageReplaced) {
+      if (
+        direction !== "down" &&
+        imageDragged === upImageReplaced &&
+        imageDragged === secondUpImageReplaced
+      ) {
         return true;
       }
-      if (direction !== "down" && direction !== "up" && imageDragged === upImageReplaced && imageDragged === downImageReplaced) {
+      if (
+        direction !== "down" &&
+        direction !== "up" &&
+        imageDragged === upImageReplaced &&
+        imageDragged === downImageReplaced
+      ) {
         return true;
       }
-      if (direction !== "up" && imageDragged === downImageReplaced && imageDragged === secondDownImageReplaced) {
+      if (
+        direction !== "up" &&
+        imageDragged === downImageReplaced &&
+        imageDragged === secondDownImageReplaced
+      ) {
         return true;
-      }
-      else {
+      } else {
         return false;
       }
-    }
-
-
+    };
 
     if (validMove && validImages()) {
-      currentColorArrangement[squareBeingReplacedId] = squareBeingDragged.getAttribute("src");
-      currentColorArrangement[squareBeingDraggedId] = squareBeingReplaced.getAttribute("src");
+      currentColorArrangement[squareBeingReplacedId] =
+        squareBeingDragged.getAttribute("src");
+      currentColorArrangement[squareBeingDraggedId] =
+        squareBeingReplaced.getAttribute("src");
       setCurrentColorArrangement([...currentColorArrangement]);
       setSquareBeingDragged(null);
       setSquareBeingReplaced(null);
     }
   };
 
-
   useEffect(() => {
     createBoard(width, setCurrentColorArrangement, candyColors);
   }, []);
-
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -127,9 +167,29 @@ const App = () => {
     return () => clearInterval(timer);
   }, [currentColorArrangement]);
 
-
   return (
     <div className="app">
+      {showModal && (
+        <div className="modal-container">
+          <h1 className="modal-text-head">How to play</h1>
+          <p className="modal-text">
+            The game is played by swiping candies to create sets of 3 or 4
+            matching candies. <br /> You can only move a candy to an adjacent
+            spot in one direction, either up, down,left or right if it creates a
+            match of at least three candies.
+            <br /> When matched, the candies will crush and shift the candies
+            above them.
+          </p>
+          <img
+            className="modal-gif"
+            src="./images/candymodal.gif"
+            alt="modal gif"
+          />
+          <button onClick={() => handleModal()} className="modal-button">
+            Lets play!
+          </button>
+        </div>
+      )}
       <div className="game">
         {currentColorArrangement.map((candyColor, index) => (
           <img
